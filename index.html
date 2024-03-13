@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 </head>
 <style>
-    textarea {
+textarea {
     display: none;
     background-color: rgb(2, 2, 63);
     filter: drop-shadow(3px 6px 8px rgb(64, 10, 199));
@@ -19,10 +19,8 @@
 }
 
 body {
-    color: black;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
-
 }
 
 
@@ -69,7 +67,7 @@ ul
     padding: 10px;
 }
 
-#reload-button
+#reload-button, #reload
 {
     padding: 10px;
     background-color: rgb(2, 2, 63);
@@ -131,14 +129,6 @@ ul li
 {
     font-size: 17px;
     padding: 6px;
-}
-
-#counter
-{
-    position: absolute;
-    bottom: 0;
-    color: white;
-    font-weight: bold;
 }
 
 input
@@ -231,8 +221,9 @@ input
     <div id="container">
         
         <div id="options-view">
-            
-            <br>Fill Stack A: <br>
+            <div>
+                <span>Fill Stack A: <span>
+            </div>
             <div id="buttons-container">
                 <input id="ramdom-checkbox" type="checkbox" class="hidden" onclick="toggle_random()">
                 <label for="ramdom-checkbox">Randomly</label>
@@ -297,7 +288,7 @@ input
     
 function isSorted() {
     const arr = Array.from(document.getElementsByClassName("stackA-list")).map(el => parseInt(el.innerHTML));
-    if( arr.every((value, index, array) => index === 0 || value >= array[index - 1]) ) {
+    if( arr.every((value, index, array) => index === 0 || value >= array[index - 1]) && arr.length > 1) {
         console.log("sorted");
         const stackAElements = document.getElementById("stackA").getElementsByTagName("li");
         console.log(stackAElements);
@@ -374,13 +365,14 @@ function validate() {
         console.log("manually checked");
         let randomNumTextArea = document.getElementById("randomNumTextArea").value;
         console.log(randomNumTextArea);
-        var regExp = /[^0-9 ]/g;
+        var regExp = /[^0-9 \n]/g;
         if (randomNumTextArea.trim().length == 0 || regExp.test(randomNumTextArea) || !randomNumTextArea) {
             document.getElementById("error").innerHTML = "Invalid input, please enter a valid number";
             return ;
         }
-        randomArray = randomNumTextArea.trim().split(" ");
-        console.log(randomArray.length);
+        console.log(randomNumTextArea);
+        randomArray = randomNumTextArea.trim().split(/\s+/).filter(Boolean);;
+        console.log("---> ", randomArray);
         uniq = [...new Set(randomArray)];
         console.log(uniq.length);
         console.log(uniq);
@@ -443,13 +435,13 @@ function generateStacks(uniq) {
             </div>
             <div id="fancy-options">
                 <div id="counter">Number of moves: <span id="ct"></span></div>
-                <button class="reload-button" id="reload" onclick="reload()">Reload</button>
+                <button id="reload" onclick="reload()">Reload</button>
             </div>    
         `;
 
 
     let i = 0;
-    nb_tries = 0;
+    numbersOfMoves = 0;
 
     while (i < uniq.length)
     {
@@ -460,7 +452,7 @@ function generateStacks(uniq) {
         document.getElementById("stackA").innerHTML += "<li class='stackA-list' style='border: white;'>" + uniq[i] + "</li>";
         i++;
     }
-    document.getElementById("ct").innerHTML = nb_tries;
+    document.getElementById("ct").innerHTML = numbersOfMoves;
     isSorted();
 }
 
@@ -503,6 +495,7 @@ function performOps(stack, operation, toPush) {
                 list[1].innerHTML = v1;
                 blink(list[0], 'c1', 't1');
                 blink(list[1], 'c1', 't1');
+                ++numbersOfMoves;
             }
             break;
         case 'rotate':
@@ -511,6 +504,7 @@ function performOps(stack, operation, toPush) {
                 list[len - 1].innerHTML = list[len].innerHTML;
             list[len - 1].innerHTML = tmp;
             blink(list[len - 1], 'c1', 't1');
+            ++numbersOfMoves;
             break;
         case 'reverseRotate':
             while (list[len])
@@ -520,6 +514,7 @@ function performOps(stack, operation, toPush) {
                 list[len].innerHTML = list[len - 1].innerHTML;
             list[len].innerHTML = tmp;
             blink(list[len], 'c1', 't1');
+            ++numbersOfMoves;
             break;
         case 'push_a':
             var firstValue = document.getElementsByClassName("stackB-list")[0]?.innerHTML;
@@ -529,6 +524,7 @@ function performOps(stack, operation, toPush) {
                 firstChild.insertAdjacentHTML('afterend', `<li class='stackA-list'>${firstValue}</li>`);
                 document.getElementsByClassName("stackB-list")[0]?.remove();
                 blink(list[0], 'c1', 't1');
+                ++numbersOfMoves;
             }
             break;
         case 'push_b':
@@ -538,6 +534,7 @@ function performOps(stack, operation, toPush) {
                 firstChild.insertAdjacentHTML('afterend', `<li class='stackB-list'>${firstValue}</li>`);
                 document.getElementsByClassName("stackA-list")[0]?.remove();
                 blink(list[0], 'c1', 't1');
+                ++numbersOfMoves;
             }
             break;
         
@@ -545,7 +542,7 @@ function performOps(stack, operation, toPush) {
             console.error('Invalid operation type');
     }
     isSorted();
-    document.getElementById("ct").innerHTML = ++nb_tries;
+    document.getElementById("ct").innerHTML = numbersOfMoves;
 }
 
 
@@ -574,11 +571,11 @@ function reverse_rotate_b() {
 }
 
 function push_a() {
-    performOperation("stackA-list", "push_a", "stackB-list");
+    performOps("stackA-list", "push_a", "stackB-list");
 }
 
 function push_b() {
-    performOperation("stackB-list", "push_b", "stackA-list");
+    performOps("stackB-list", "push_b", "stackA-list");
 }
 
 </script>
