@@ -231,16 +231,16 @@ input
                 <label for="manual-checkbox">Manually</label>
                 <div id="main-input" style="display: none;">
                     <div>
-                        <span>Total numbers:</span> 
-                        <input id="total-nums"> 
-                    </div>
-                    <div>
                         <span>Min value:</span> 
                         <input id="-inf" placeholder='-inf'><p></p>
                     </div>
                     <div>
                         <span>Max value:</span> 
                         <input id="inf" placeholder='inf'><p></p>
+                    </div>
+                    <div>
+                        <span>Total numbers:</span> 
+                        <input id="total-nums"> 
                     </div>
                 </div>
         </div>
@@ -304,6 +304,11 @@ function isSorted() {
         }
         document.getElementById("stackA").style.border = "none";
     }
+}
+
+function hasDuplicates(array) {
+    const normalizedArray = array.map(item => String(item).replace(/^0+/, ''));
+    return new Set(normalizedArray).size !== normalizedArray.length;
 }
 
 
@@ -376,7 +381,7 @@ function validate() {
         uniq = [...new Set(randomArray)];
         console.log(uniq.length);
         console.log(uniq);
-        if (uniq.length !== randomArray.length) {
+        if (hasDuplicates(randomArray)) {
             document.getElementById("error").innerHTML = "You have duplicate numbers";
             return ;
         }
@@ -449,7 +454,7 @@ function generateStacks(uniq) {
             i++;
             continue;
         }
-        document.getElementById("stackA").innerHTML += "<li class='stackA-list' style='border: white;'>" + uniq[i] + "</li>";
+        document.getElementById("stackA").innerHTML += "<li class='stackA-list' style='border: white;'>" + parseInt(uniq[i]) + "</li>";
         i++;
     }
     document.getElementById("ct").innerHTML = numbersOfMoves;
