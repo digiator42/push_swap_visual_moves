@@ -2,168 +2,260 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <style>
-    
-    textarea {
-        display: none;
-        background-color: rgb(2, 2, 63);
-        filter: drop-shadow(3px 6px 8px rgb(64, 10, 199));
-        border: 1px solid rgb(64, 10, 199);
-        border-radius: 10px;
-        width: 100%;
-        height: 350px;
-        resize: both;
-        padding: 10px;
-        box-sizing: border-box;
-        color: white;
-    }
-    
-    body {
-        color: black;
-        font-size: 20px;
-        font-weight: bold;
-        margin: auto;
-
-    }
-
-    header
-    {
-        text-align: center;
-        font-size: 40px;
-        color: gold;
-        background-color: transparent;
-        border: 3px dashed red;
-        font-family: monotype corsiva;
-        font-weight: bold;
-        padding: 10px;
-    }
-
-    #bg
-    {
-        position: fixed;
-        background: linear-gradient(rgb(9, 121, 91) 0%, rrgb(59, 3, 14)100%);
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-    }
-
-    #container
-    {
-        position: absolute;
-        margin-left: 10%;
-        margin-top: 3%;
-        height: 80%;
-        width: 80%;
-        background-color: transparent;
-    }
-
-    #main-view
-    {
-        background-color: transparent;
-        width: 100%;
-        height: 100%;
-        font-size: 20px;
-        z-index: 2;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        overflow: hidden;
-    }
-
-
-    input:not(#c1, #c2)
-    {
-        width: 60px;
-        padding: 5px;
-        outline-style: none;
-        font-size: 16px;
-    }
-
-    .sort
-    {
-        position: absolute;
-        width: 100px;
-        font-size: 20px;
-    }
-
-    #bg{
-        width: 100%;
-        height: 100%;
-        background-image: url("upper_background.jpg");
-        filter: blur(2px);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        z-index: 0;
-    }
-
-    input{
-        margin-top: 20px;
-        min-width: 400px;
-        padding: 10px 20px;
-        border-radius: 100px;
-        text-align: center;
-    }
-    
-    #buttons-container {
-        display: table;
-        width: 100%;
-        text-align: center;
-        padding: 24px 0 0;
-    }
-    .hidden {
-        position: absolute;
-        visibility: hidden;
-        opacity: 0;
-    }
-
-    input[type=checkbox]+label {
-        filter: drop-shadow(3px 6px 8px white);
-        border-radius: 10px;
-        padding: 6px 24px;
-        color: aliceblue;
-        margin-left: 4px;
-        background: #9b00d8;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
-    }
-
-    input[type=checkbox]:not(#sort):checked+label {
-        padding: 6px 24px;
-        background: #41015a;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
-    }
-    </style>
 </head>
+<style>
+    textarea {
+    display: none;
+    background-color: rgb(2, 2, 63);
+    filter: drop-shadow(3px 6px 8px rgb(64, 10, 199));
+    border: 1px solid rgb(64, 10, 199);
+    border-radius: 10px;
+    width: 100%;
+    height: 350px;
+    resize: both;
+    padding: 10px;
+    box-sizing: border-box;
+    color: white;
+}
+
+body {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+
+#bg
+{
+    position: fixed;
+    background: linear-gradient(rgb(9, 121, 91) 0%, rrgb(59, 3, 14)100%);
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#container
+{
+    position: absolute;
+    margin-left: 10%;
+    margin-top: 3%;
+    height: 80%;
+    width: 80%;
+    background-color: transparent;
+}
+
+ul
+{
+    position: absolute;
+    top: 0%;
+    list-style: none;
+    height: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: 180px;
+}
+
+#fancy-options
+{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+#reload-button
+{
+    padding: 10px;
+    background-color: rgb(2, 2, 63);
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#stacks-ops {
+    top: 50%;
+}
+
+#stackA {
+    left: 15%;
+    overflow: auto;
+}
+#stackB {
+    left: 31%;
+    overflow: auto;
+}
+
+ul li
+{
+    padding: 5px;
+    margin: 5px;
+    background-color: grey;
+    border: 3px solid white;
+    border-radius: 20px;
+    font-size: 25px;
+}
+
+.stack-header
+{
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 5px;
+}
+
+
+#options-view
+{
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+}
+
+#validate
+{
+    font-size: 17px;
+    padding: 6px;
+}
+
+#counter
+{
+    position: absolute;
+    bottom: 0;
+    color: white;
+    font-weight: bold;
+}
+
+input
+{
+    width: 60px;
+    padding: 5px;
+    outline-style: none;
+    font-size: 16px;
+    background-color: rgb(2, 2, 63);
+    filter: drop-shadow(3px 6px 8px rgb(64, 10, 199));
+    color: white;
+}
+
+#stacks-ops {
+    top: 50%;
+    width: 32%;
+    left: 50%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.ops-button {
+    flex-basis: calc(33% - 10px);
+    margin: 5px;
+    padding: 10px;
+}
+
+
+  #bg{
+    width: 100%;
+    height: 100%;
+    background-image: url("upper_background.jpg");
+    filter: blur(2px);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 0;
+  }
+
+  input{
+    margin-top: 20px;
+    min-width: 400px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    text-align: center;
+  }
+  
+  #buttons-container {
+    display: table;
+    width: 100%;
+    text-align: center;
+    padding: 24px 0 0;
+  }
+  .hidden {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  input[type=checkbox]+label {
+    filter: drop-shadow(3px 6px 8px white);
+    border-radius: 10px;
+    padding: 6px 24px;
+    color: aliceblue;
+    margin-left: 4px;
+    background: #9b00d8;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  input[type=checkbox]:not(#sort):checked+label {
+    padding: 6px 24px;
+    background: #41015a;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+</style>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Push Swap</title>
 <body>
     
     <div id="bg"></div>
     
     <div id="container">
         
-        <div id="main-view">
+        <div id="options-view">
             
-            <br>Fill the stack A: <br>
+            <br>Fill Stack A: <br>
             <div id="buttons-container">
                 <input id="ramdom-checkbox" type="checkbox" class="hidden" onclick="toggle_random()">
                 <label for="ramdom-checkbox">Randomly</label>
                 <input id="manual-checkbox" type="checkbox" class="hidden" onclick="toggle_manual()">
                 <label for="manual-checkbox">Manually</label>
                 <div id="main-input" style="display: none;">
-                    Total numbers:
-                    <input id="total-nums" onkeypress="reset()"> <br>
-                    <br>Min value: <input placeholder='-inf'><p></p>
-                    Max value: <input placeholder='inf'><p></p>
+                    <div>
+                        <span>Total numbers:</span> 
+                        <input id="total-nums"> 
+                    </div>
+                    <div>
+                        <span>Min value:</span> 
+                        <input id="-inf" placeholder='-inf'><p></p>
+                    </div>
+                    <div>
+                        <span>Max value:</span> 
+                        <input id="inf" placeholder='inf'><p></p>
+                    </div>
                 </div>
-                <br>
-                <button id="validate" onclick="validate()">Let's go</button>
-                <textarea id="randomNumTextArea" placeholder="Put random numbers you want to sort seperated by spaces..."></textarea>
-            </div>
+        </div>
+        <button id="validate" onclick="validate()">Let's go</button>
+        <textarea id="randomNumTextArea" placeholder="Put random numbers you want to sort seperated by spaces..."></textarea>
+        <p id="error"></p>
         
         <div id="ops-container">
 
@@ -174,12 +266,15 @@
 </body>
 <script>
     
+
     function toggle_random() {
         document.getElementById("randomNumTextArea").style.display = 'none';
         if (document.getElementById("ramdom-checkbox").checked == true) {
             document.getElementById("main-input").style.display = 'block';
             document.getElementById("manual-checkbox").checked = false;
         }
+        else
+            document.getElementById("main-input").style.display = 'none';
     }
     
     function toggle_manual() {
@@ -187,17 +282,304 @@
         {
             document.getElementById("ramdom-checkbox").checked = false;
             document.getElementById("main-input").style.display = 'none';
-            let totalNums = document.getElementById("total-nums").value;
-            let randomNumTextArea = document.getElementById("randomNumTextArea").style.display = 'block';
-            console.log(randomNumTextArea);
-            localStorage.setItem('totalValues', totalNums)
+            document.getElementById("error").innerHTML = "";
+            nb_val = document.getElementsByTagName("input").value;
+            var nb = parseInt(nb_val);
+
+                let randomNumTextArea = document.getElementById("randomNumTextArea").style.display = 'block';
+                console.log(randomNumTextArea);
+                localStorage.setItem('totalValues', nb_val)
         }
+        else
+            document.getElementById("randomNumTextArea").style.display = 'none';
     }
     
-    function reset() {
-        let manualCheckbox = document.getElementById("manual-checkbox");
-        manualCheckbox.checked = !manualCheckbox.checked;
-    }
     
+function isSorted() {
+    const arr = Array.from(document.getElementsByClassName("stackA-list")).map(el => parseInt(el.innerHTML));
+    if( arr.every((value, index, array) => index === 0 || value >= array[index - 1]) ) {
+        console.log("sorted");
+        const stackAElements = document.getElementById("stackA").getElementsByTagName("li");
+        console.log(stackAElements);
+        for (let i = 0; i < stackAElements.length; i++) {
+            stackAElements[i].style.border = "2px solid green";
+        }
+        document.getElementById("stackA").style.border = "4px solid green";
+    } else {
+        console.log("not sorted");
+        const stackAElements = document.getElementById("stackA").getElementsByTagName("li");
+        for (let i = 0; i < stackAElements.length; i++) {
+            stackAElements[i].style.border = "none";
+        }
+        document.getElementById("stackA").style.border = "none";
+    }
+}
+
+
+function validate() {
+    let randomArray = [];
+    var totalNums = document.getElementById("total-nums").value;
+
+    if (!document.getElementById("ramdom-checkbox").checked && !document.getElementById("manual-checkbox").checked) {
+        document.getElementById("error").innerHTML = "You must select an option";
+        document.getElementById("error").style.color = 'red';
+        document.getElementById("error").style.background = 'white';
+        return ;
+    }
+
+    if (!document.getElementById("ramdom-checkbox").checked && !document.getElementById("manual-checkbox").checked) {
+        document.getElementById("error").innerHTML = "You must select an option";
+        document.getElementById("error").style.color = 'red';
+        return;
+    }
+
+    // ----------------- random values option -------------------
+    if (document.getElementById("ramdom-checkbox").checked) {
+        if (isNaN(totalNums) || !totalNums || totalNums.trim().length === 0 || parseInt(totalNums) <= 0) 
+        {
+            console.log("Please enter a number bigger than 0");
+            console.log(totalNums);
+            document.getElementById("error").innerHTML = "Please enter a number";
+            return;
+        } 
+        
+        console.log("random checked");
+        var minValue = document.getElementById("-inf").value;
+        var maxValue = document.getElementById("inf").value;
+
+        if (isNaN(minValue) || isNaN(maxValue) || !minValue || !maxValue 
+            || minValue.trim().length === 0 || maxValue.trim().length === 0 
+                || parseInt(minValue) < 0 || parseInt(maxValue) < 0) 
+        {
+            console.log(minValue, maxValue, totalNums);
+            console.log(isNaN(minValue), isNaN(maxValue))
+            document.getElementById("error").innerHTML = "Please fill in all fields with numbers only";
+            return;
+        }
+
+        if (parseInt(maxValue) - parseInt(minValue) <= parseInt(totalNums)) {
+            let diffError = document.getElementById("error")
+            diffError.innerHTML = `Here is a thing you need ${totalNums} RANDOM numbers, but the range between ${minValue} and ${maxValue} is not enough to generate ${totalNums} numbers, make the max value bigger than ${maxValue}`;
+            diffError.style.background = 'white';
+            customBlink(document.getElementById("inf"), 'c1', 't1');
+            return ;
+        }
+
+        randomArray = generateUniqueRandomNumbers(totalNums, minValue, maxValue);
+        localStorage.setItem("randomArray", randomArray);
+
+    }
+    let uniq = [];
+    if (document.getElementById("manual-checkbox").checked) {
+        console.log("manually checked");
+        let randomNumTextArea = document.getElementById("randomNumTextArea").value;
+        console.log(randomNumTextArea);
+        var regExp = /[^0-9 ]/g;
+        if (randomNumTextArea.trim().length == 0 || regExp.test(randomNumTextArea) || !randomNumTextArea) {
+            document.getElementById("error").innerHTML = "Invalid input, please enter a valid number";
+            return ;
+        }
+        randomArray = randomNumTextArea.trim().split(" ");
+        console.log(randomArray.length);
+        uniq = [...new Set(randomArray)];
+        console.log(uniq.length);
+        console.log(uniq);
+        if (uniq.length !== randomArray.length) {
+            document.getElementById("error").innerHTML = "You have duplicate numbers";
+            return ;
+        }
+        localStorage.setItem("randomArray", uniq);
+    }
+    !uniq.length ? generateStacks(randomArray) : generateStacks(uniq);
+}
+
+
+function generateUniqueRandomNumbers(totalNums, minValue, maxValue) {
+    
+    let numbers = Array.from({length: maxValue - minValue + 1}, (_, i) => minValue + i);
+    for (let i = numbers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+    }
+    return numbers.slice(0, totalNums);
+}
+
+function customBlink(elem, counterKey) {
+    blinkCounters[counterKey]++;
+    if (blinkCounters[counterKey] == 7) {
+        clearTimeout(myTimeout);
+        blinkCounters[counterKey] = 0;
+        return ;
+    }
+    var style = window.getComputedStyle(elem);
+    var borderColor = style.getPropertyValue('border-color');
+    if (borderColor == "rgb(2, 2, 63)")
+        elem.style.borderColor = "red";
+    else
+        elem.style.borderColor = "rgb(2, 2, 63)";
+    myTimeout = setTimeout(customBlink, 200, elem);
+}
+
+function reload() {
+    window.location.reload();
+}
+
+function generateStacks(uniq) {
+    document.getElementById("container").innerHTML = 
+        `
+        <ul id="stackA"><div class='stack-header'>Stack A</div>
+        </ul>
+        <ul id="stackB"><div class='stack-header'>Stack B</div>
+        </ul>
+            <div id="stacks-ops">
+                <button class="ops-button" id="sa" onclick="swap_a()">Swap A</button>
+                <button class="ops-button" id="sb" onclick="swap_b()">Swap B</button>
+                <button class="ops-button" id="pa" onclick="push_a()">Push A</button>
+                <button class="ops-button" id="pb" onclick="push_b()">Push B</button>
+                <button class="ops-button" id="ra" onclick="rotate_a()">Rotate A</button>
+                <button class="ops-button" id="rb" onclick="rotate_b()">Rotate B</button>
+                <button class="ops-button" id="rra" onclick="reverse_rotate_a()">Reverse Rotate A</button>
+                <button class="ops-button" id="rrb" onclick="reverse_rotate_b()">Reverse Rotate B</button>
+            </div>
+            <div id="fancy-options">
+                <div id="counter">Number of moves: <span id="ct"></span></div>
+                <button class="reload-button" id="reload" onclick="reload()">Reload</button>
+            </div>    
+        `;
+
+
+    let i = 0;
+    nb_tries = 0;
+
+    while (i < uniq.length)
+    {
+        if (uniq[i] == "") {
+            i++;
+            continue;
+        }
+        document.getElementById("stackA").innerHTML += "<li class='stackA-list' style='border: white;'>" + uniq[i] + "</li>";
+        i++;
+    }
+    document.getElementById("ct").innerHTML = nb_tries;
+    isSorted();
+}
+
+var blinkCounters = {
+    c1: 0,
+    c2: 0,
+};
+
+var blinkTimeouts = {
+    t1: null,
+    t2: null,
+};
+
+function blink(elem, counterKey, timeoutKey) {
+    blinkCounters[counterKey]++;
+    if (elem.style.backgroundColor == "grey") {
+        elem.style.backgroundColor = "white";
+    } else {
+        elem.style.backgroundColor = "grey";
+    }
+    blinkTimeouts[timeoutKey] = setTimeout(blink, 200, elem, counterKey, timeoutKey);
+    if (blinkCounters[counterKey] == 5) {
+        clearTimeout(blinkTimeouts[timeoutKey]);
+        blinkCounters[counterKey] = 0;
+        elem.style.backgroundColor = "grey";
+    }
+}
+
+function performOps(stack, operation, toPush) {
+    var list = document.getElementsByClassName(stack);
+    var len = 0;
+    var tmp;
+
+    switch (operation) {
+        case 'swap':
+            if (list.length >= 2) {
+                var v1 = list[0].innerHTML;
+                var v2 = list[1].innerHTML;
+                list[0].innerHTML = v2;
+                list[1].innerHTML = v1;
+                blink(list[0], 'c1', 't1');
+                blink(list[1], 'c1', 't1');
+            }
+            break;
+        case 'rotate':
+            tmp = list[len].innerHTML;
+            while (list[++len])
+                list[len - 1].innerHTML = list[len].innerHTML;
+            list[len - 1].innerHTML = tmp;
+            blink(list[len - 1], 'c1', 't1');
+            break;
+        case 'reverseRotate':
+            while (list[len])
+                len++;
+            tmp = list[len - 1].innerHTML;
+            while (--len > 0)
+                list[len].innerHTML = list[len - 1].innerHTML;
+            list[len].innerHTML = tmp;
+            blink(list[len], 'c1', 't1');
+            break;
+        case 'push_a':
+            var firstValue = document.getElementsByClassName("stackB-list")[0]?.innerHTML;
+            console.log(firstValue);
+            if (firstValue) {
+                let firstChild = document.getElementById("stackA").firstElementChild;
+                firstChild.insertAdjacentHTML('afterend', `<li class='stackA-list'>${firstValue}</li>`);
+                document.getElementsByClassName("stackB-list")[0]?.remove();
+                blink(list[0], 'c1', 't1');
+            }
+            break;
+        case 'push_b':
+            var firstValue = document.getElementsByClassName("stackA-list")[0]?.innerHTML;
+            if (firstValue) {
+                let firstChild = document.getElementById("stackB").firstElementChild;
+                firstChild.insertAdjacentHTML('afterend', `<li class='stackB-list'>${firstValue}</li>`);
+                document.getElementsByClassName("stackA-list")[0]?.remove();
+                blink(list[0], 'c1', 't1');
+            }
+            break;
+        
+        default:
+            console.error('Invalid operation type');
+    }
+    isSorted();
+    document.getElementById("ct").innerHTML = ++nb_tries;
+}
+
+
+function swap_a() {
+    performOps("stackA-list", "swap");
+}
+
+function swap_b() {
+    performOps("stackB-list", "swap");
+}
+
+function rotate_a() {
+    performOps("stackA-list", "rotate");
+}
+
+function rotate_b() {
+    performOps("stackB-list", "rotate");
+}
+
+function reverse_rotate_a() {
+    performOps("stackA-list", "reverseRotate");
+}
+
+function reverse_rotate_b() {
+    performOps("stackB-list", "reverseRotate");
+}
+
+function push_a() {
+    performOperation("stackA-list", "push_a", "stackB-list");
+}
+
+function push_b() {
+    performOperation("stackB-list", "push_b", "stackA-list");
+}
+
 </script>
 </html>
